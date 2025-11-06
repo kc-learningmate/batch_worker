@@ -44,9 +44,9 @@ export class CrawlingService {
       return this.extractContent(html, title);
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
-        this.logger.error(`Timeout fetching ${url}`);
+        this.logger.warn(`Timeout fetching ${url}`);
       } else {
-        this.logger.error(`Failed to crawl ${url}`);
+        this.logger.warn(`Failed to crawl ${url}`);
       }
       return null;
     }

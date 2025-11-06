@@ -211,9 +211,9 @@ export class BatchService {
 
   private generateQuery(keywordInfo: KeywordInfo): string {
     console.log(
-      `query >>>>>>: ${keywordInfo.name} ${keywordInfo.description.substring(0, 100)}`,
+      `query >>>>>>: ${keywordInfo.name} ${keywordInfo.description.split('.')[0]}`,
     );
-    return `${keywordInfo.name} ${keywordInfo.description.substring(0, 100)}`;
+    return `${keywordInfo.name} ${keywordInfo.description.split('.')[0]}`;
   }
 
   private async isArticleExists(keywordId: bigint): Promise<boolean> {
