@@ -31,8 +31,6 @@ export class BatchService {
   async generateContents(keywordId: bigint): Promise<void> {
     this.logger.log(`Starting content generation for keyword ID: ${keywordId}`);
 
-    const keywordInfo = await this.findKeyword(keywordId);
-
     if (await this.isArticleExists(keywordId)) {
       if (await this.isQuizExists(keywordId)) {
         this.logger.warn(`Contents already exist for keyword ID: ${keywordId}`);
@@ -45,6 +43,8 @@ export class BatchService {
       );
       return;
     }
+
+    const keywordInfo = await this.findKeyword(keywordId);
 
     const prompts = await this.createPrompts(keywordInfo);
     await this.generateArticles(keywordId, prompts);
