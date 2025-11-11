@@ -50,6 +50,8 @@ model Keyword {
   Video         Video[]
 
   @@index([categoryId], map: "FK9hqhtlqxtjb70umrxcvvb1qvc")
+  @@index([name], map: "idx_keyword_name")
+  @@fulltext([name], map: "ft_keyword_name")
 }
 
 model LikeReview {
@@ -58,7 +60,7 @@ model LikeReview {
   updatedAt DateTime @default(now()) @db.Timestamp(6)
   memberId  BigInt
   reviewId  BigInt
-  Review    Review   @relation(fields: [reviewId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK9rovxawis6ajfnvvpg901ghly")
+  Review    Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK9rovxawis6ajfnvvpg901ghly")
   Member    Member   @relation(fields: [memberId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKcjiolh2ge79lmd5a69dvncyap")
 
   @@unique([reviewId, memberId], map: "uk_like_review_review_member")
