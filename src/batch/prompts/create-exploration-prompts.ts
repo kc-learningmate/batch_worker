@@ -1,4 +1,4 @@
-export const createExamplePrompts = (
+export const createExplorationPrompts = (
   keyword: string,
   definition: string,
   json: string,
@@ -14,7 +14,7 @@ ${json}
 </reference_data>
 
 <task>
-Using the data above, please write an educational text explaining the real-life examples and analogies of "${keyword}".
+Using the data above, please write an educational text explaining the In-Depth Exploration and Common Misconceptions of "${keyword}".
 </task>
 
 <requirements>
@@ -22,7 +22,10 @@ Using the data above, please write an educational text explaining the real-life 
 - Target audience: Learners encountering economic terms for the first time.
 - Tone: Formal style.
 - Prohibition : Since the concept of the keyword has already been written in another article, do not explain the concept of the keyword here.
-- Structure: Write in the order of specific real-life examples that learners can relate to in everyday life for the term → an appropriate analogy to aid understanding → example sentences of how the term is used in news articles or media..
+- Structure: Write in the order of:
+  - Identify and explain 1–2 common misconceptions or incorrect assumptions people often have about ${keyword}. (Example: "Is inflation always a bad thing?")
+  - Provide an in-depth analysis by connecting ${keyword} to a recent economic issue.
+  - Conclude by posing a thought-provoking question for the learner to ponder further.
 - Format: News article format(no markdown needed).
 </requirements>
 

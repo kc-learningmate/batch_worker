@@ -1,4 +1,4 @@
-export const createExamplePrompts = (
+export const createRelatedWordsPrompts = (
   keyword: string,
   definition: string,
   json: string,
@@ -14,7 +14,7 @@ ${json}
 </reference_data>
 
 <task>
-Using the data above, please write an educational text explaining the real-life examples and analogies of "${keyword}".
+Using the data above, please write an educational text explaining the related words of "${keyword}".
 </task>
 
 <requirements>
@@ -22,7 +22,10 @@ Using the data above, please write an educational text explaining the real-life 
 - Target audience: Learners encountering economic terms for the first time.
 - Tone: Formal style.
 - Prohibition : Since the concept of the keyword has already been written in another article, do not explain the concept of the keyword here.
-- Structure: Write in the order of specific real-life examples that learners can relate to in everyday life for the term → an appropriate analogy to aid understanding → example sentences of how the term is used in news articles or media..
+- Structure: Write in the order of:
+  - Select 2–3 terms closely related to ${keyword} and explain their relationships.
+  - If there is a clear opposing or conflicting concept, present it as well. (e.g., inflation ↔ deflation)
+  - Describe a scenario where these terms appear together
 - Format: News article format(no markdown needed).
 </requirements>
 

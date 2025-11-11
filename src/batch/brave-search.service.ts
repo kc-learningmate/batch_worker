@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { BATCH_OPTIONS } from 'src/constants/batch-options';
+import { ERROR_MESSAGE } from 'src/constants/error-message';
 import { fetchWithTimeout } from 'src/utils/fetch-with-timeout';
 import { EnvSchema } from '../config/validate-env';
 import { SearchResult } from './types/types';
@@ -27,7 +28,7 @@ export class BraveSearchService {
 
     if (!response.ok) {
       console.error(await response.json());
-      return [];
+      throw Error(ERROR_MESSAGE.BRAVE_SEARCH_API_REQUEST_FAILED);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

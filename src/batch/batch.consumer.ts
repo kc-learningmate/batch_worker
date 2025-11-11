@@ -1,4 +1,5 @@
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { OnWorkerEvent, Processor, WorkerHost } from '@nestjs/bullmq';
+import { Logger } from '@nestjs/common';
 import { Job } from 'bullmq';
 import { BATCH_OPTIONS } from 'src/constants/batch-options';
 import { BatchService } from './batch.service';
@@ -6,6 +7,8 @@ import { BatchQueueData } from './types/types';
 
 @Processor(BATCH_OPTIONS.QUEUE_NAME)
 export class BatchConsumer extends WorkerHost {
+  private readonly logger = new Logger(BatchConsumer.name);
+
   constructor(private readonly batchService: BatchService) {
     super();
   }
@@ -16,5 +19,20 @@ export class BatchConsumer extends WorkerHost {
         await this.batchService.generateContents(BigInt(job.data.keywordId));
         break;
     }
+  }
+
+  @OnWorkerEvent('completed')
+  onCompleted(job: Job<BatchQueueData>) {
+    this.logger.log(
+      `Job ${job.id} (${job.name}) completed successfully for keywordId: ${job.data.keywordId}`,
+    );
+  }
+
+  @OnWorkerEvent('failed')
+  onFailed(job: Job<BatchQueueData>, error: Error) {
+    this.logger.error(
+      `Job ${job.id} (${job.name}) failed for keywordId: ${job.data.keywordId}`,
+      error.stack,
+    );
   }
 }

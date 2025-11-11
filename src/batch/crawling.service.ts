@@ -20,7 +20,6 @@ export class CrawlingService {
   async crawlWebsite({
     title,
     url,
-    description,
   }: SearchResult): Promise<CrawlResult | null> {
     try {
       const isAllowed = await this.isUrlAllowed(url);
@@ -42,22 +41,18 @@ export class CrawlingService {
 
       const html = await response.text();
 
-      return this.extractContent(html, title, description);
+      return this.extractContent(html, title);
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
-        this.logger.error(`Timeout fetching ${url}`);
+        this.logger.warn(`Timeout fetching ${url}`);
       } else {
-        this.logger.error(`Failed to crawl ${url}:`, error);
+        this.logger.warn(`Failed to crawl ${url}`);
       }
       return null;
     }
   }
 
-  private extractContent(
-    html: string,
-    title: string,
-    description: string,
-  ): CrawlResult {
+  private extractContent(html: string, title: string): CrawlResult {
     const $ = cheerio.load(html);
     $(BATCH_OPTIONS.REMOVE_SELECTORS).remove();
 
@@ -72,7 +67,7 @@ export class CrawlingService {
       }
     });
 
-    return { title, description, texts: Array.from(textSet) };
+    return { title, texts: Array.from(textSet) };
   }
 
   private async isUrlAllowed(

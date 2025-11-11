@@ -1,4 +1,4 @@
-export const createExamplePrompts = (
+export const createImportancePrompts = (
   keyword: string,
   definition: string,
   json: string,
@@ -14,7 +14,7 @@ ${json}
 </reference_data>
 
 <task>
-Using the data above, please write an educational text explaining the real-life examples and analogies of "${keyword}".
+Using the data above, please write an educational text explaining the Importance and Economic Impact of "${keyword}".
 </task>
 
 <requirements>
@@ -22,7 +22,10 @@ Using the data above, please write an educational text explaining the real-life 
 - Target audience: Learners encountering economic terms for the first time.
 - Tone: Formal style.
 - Prohibition : Since the concept of the keyword has already been written in another article, do not explain the concept of the keyword here.
-- Structure: Write in the order of specific real-life examples that learners can relate to in everyday life for the term → an appropriate analogy to aid understanding → example sentences of how the term is used in news articles or media..
+- Structure: Write in the order of:
+  - Explain the impact of ${keyword} on an individual's life (e.g., savings, investment, consumption).
+  - Explain the impact on business management and the national economy (e.g., government policy, trade).
+  - Conclude by emphasizing why one should know this term.
 - Format: News article format(no markdown needed).
 </requirements>
 

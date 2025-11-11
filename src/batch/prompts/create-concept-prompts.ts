@@ -20,9 +20,9 @@ Using the data above, please write an educational text explaining the concept of
 <requirements>
 - Length: Greater than 1000 characters and less than 2000 characters.
 - Target audience: Learners encountering economic terms for the first time.
-- Tone: Friendly and easy to understand.
+- Tone: Formal style.
 - Structure: Write in the order of definition → key content → simple example.
-- Format: Plain text (no markdown needed).
+- Format: News article format(no markdown needed).
 </requirements>
 
 <output_format>
