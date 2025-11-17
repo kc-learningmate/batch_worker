@@ -5,7 +5,7 @@ export const BATCH_OPTIONS = {
     'script, style, nav, header, footer, form, button, link, a, iframe, noscript, svg, canvas, input, select, textarea, label, aside, img',
   SELECTORS: 'article, section, p, blockquote, dt, dd, div',
   MIN_TEXT_LENGTH: 30,
-  MAX_TEXT_LENGTH_FOR_BM25: 3000,
+  MAX_TEXT_LENGTH_FOR_BM25: 1000,
   CHUNK_SIZE: 800,
   QUEUE_NAME: 'batch',
   JOB_NAME: 'generate',
